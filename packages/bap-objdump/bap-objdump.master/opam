@@ -19,4 +19,9 @@ install: [[make "install"]]
 remove: [["ocamlfind" "remove" "bap-plugin-objdump"]
 	 ["bapbundle" "remove" "objdump.plugin"]
 ]
-depends: ["bap-std" "re" "cmdliner" "conf-binutils"]
+depends: [
+  "bap-std"
+  "re" {< "1.7.2" }
+  "cmdliner"
+  "conf-binutils"
+]
