@@ -85,5 +85,5 @@ a Lisp-like DSL for writing program analysis tools.
 
 This is a meta package that installs essential parts of BAP."""
 url {
-  src: "git+https://github.com/BinaryAnalysisPlatform/bap#master"
+  src: "git+https://github.com/BinaryAnalysisPlatform/bap#6efba4d"
 }
