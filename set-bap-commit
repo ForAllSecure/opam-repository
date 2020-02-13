@@ -1,0 +1,42 @@
+#! /usr/bin/env bash
+#
+# Pin bap to a specific commit or branch.
+#
+set -eu
+
+usage() {
+  cat <<EOF
+Usage: ./set-bap-commit COMMIT
+
+Pin the bap packages to a specific git commit, branch, or tag.
+
+COMMIT is a commit ID accepted by git, such as a hexadecimal commit hash,
+a tag or a branch name. It must be URL-encoded or contain only URL-safe
+characters as is usually the case.
+
+Examples:
+  ./set-bap-commit 3ae49af
+  ./set-bap-commit master
+EOF
+}
+
+if [[ $# != 1 ]]; then
+  (
+    echo "Invalid number of arguments."
+    usage
+  ) >&2
+  exit 1
+fi
+
+commit="$1"
+
+rm -f BAP-COMMIT
+
+git ls-files packages \
+  | xargs -i find {} -type f \
+  | xargs sed -i -e \
+          "s|\(github.com/BinaryAnalysisPlatform/bap#\)[^\"]*\"|\1$commit\"|g"
+
+echo "$commit" > BAP-COMMIT
+
+echo "Please check 'git diff' and commit the result if it looks good."
