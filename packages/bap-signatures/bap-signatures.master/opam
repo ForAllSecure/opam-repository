@@ -19,5 +19,5 @@ depends: ["ocaml"]
 flags: light-uninstall
 url {
   src:
-    "https://github.com/BinaryAnalysisPlatform/bap/releases/download/v1.5.0/sigs.tar.gz"
+    "https://github.com/BinaryAnalysisPlatform/bap/releases/latest/download/sigs.tar.gz"
 }
